@@ -3,9 +3,9 @@ CREATE DATABASE chat;
 USE chat;
 
 CREATE TABLE messages (
-  userid int(6),
+  username varchar(160),
   message varchar(160),
-  roomid int(6)
+  roomname varchar(160)
 );
 
 /* Create other tables and define schemas for them here! */

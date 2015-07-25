@@ -13,17 +13,16 @@ module.exports = {
         callback(results);
       });
       // how are we going to get all the messages from DB
-      //use sql query
       // sql returns an array of objects (table rows)
 
 
     }, // a function which produces all the messages
     post: function (request, callback) {
       var user = request.body.username;
-      var msg = request.body.text;
-      db.query('INSERT into messages (message) values("' + msg + '")', function(err, results) {
+      var msg = request.body.message;
+      db.query('INSERT into messages SET ?', request.body, function(err, results) {
         if(err) throw err;
-        callback(results)
+        callback(results);
       });
 
 
@@ -32,8 +31,20 @@ module.exports = {
 
   users: {
     // Ditto as above.
-    get: function () {},
-    post: function () {}
+    get: function (callback) {
+      db.query('SELECT username from users', function(err, results){
+        if(err) throw err;
+        callback(results);
+      });
+    },
+    post: function (request, callback) {
+      var user = request.body.username;
+      var msg = request.body.message;
+      db.query('INSERT into users (username) values("' + user + '")', function(err, results) {
+        if(err) throw err;
+        callback(results)
+      });
+    }
   }
 };
 
