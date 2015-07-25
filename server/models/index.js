@@ -8,8 +8,7 @@ var bluebird = require('bluebird');
 module.exports = {
   messages: {
     get: function (callback) {
-      db.query('SELECT message from messages;', function(err, results){
-        console.log("talking to controller")
+      db.query('SELECT message from messages', function(err, results){
         if(err) throw err;
         callback(results);
       });
@@ -22,7 +21,7 @@ module.exports = {
     post: function (request, callback) {
       var user = request.body.username;
       var msg = request.body.text;
-      db.query('INSERT into messages (message) values(' + msg + ')', function(err, results) {
+      db.query('INSERT into messages (message) values("' + msg + '")', function(err, results) {
         if(err) throw err;
         callback(results)
       });
