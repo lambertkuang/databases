@@ -1,4 +1,5 @@
-var db = require('../db');
+var db = require('../db/index');
+db.connect();
 
 
 
