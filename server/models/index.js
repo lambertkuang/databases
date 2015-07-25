@@ -8,7 +8,7 @@ var bluebird = require('bluebird');
 module.exports = {
   messages: {
     get: function (callback) {
-      db.query('SELECT message from messages', function(err, results){
+      db.query('SELECT * from messages', function(err, results){
         if(err) throw err;
         callback(results);
       });
