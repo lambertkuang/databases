@@ -18,8 +18,7 @@ module.exports = {
 
     }, // a function which produces all the messages
     post: function (request, callback) {
-      var user = request.body.username;
-      var msg = request.body.message;
+      console.log(request.body)
       db.query('INSERT into messages SET ?', request.body, function(err, results) {
         if(err) throw err;
         callback(results);
